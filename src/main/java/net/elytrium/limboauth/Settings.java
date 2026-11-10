@@ -43,6 +43,7 @@ public class Settings extends YamlConfig {
   @Ignore
   public static final Settings IMP = new Settings();
 
+  @SuppressFBWarnings(value = "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD", justification = "Serialized by YamlConfig.")
   @Final
   public String VERSION = BuildConstants.AUTH_VERSION;
 
