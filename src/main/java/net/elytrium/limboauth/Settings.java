@@ -422,6 +422,7 @@ public class Settings extends YamlConfig {
       public String LOGIN = "{PRFX} &aPlease, login using &6/login <password>&a, you have &6{0} &aattempts.";
       public String LOGIN_WRONG_PASSWORD = "{PRFX} &cYou''ve entered the wrong password, you have &6{0} &cattempts left.";
       public String LOGIN_WRONG_PASSWORD_KICK = "{PRFX}{NL}&cYou've entered the wrong password numerous times!";
+      @Comment(value = "Can be empty.", at = Comment.At.SAME_LINE)
       public String LOGIN_SUCCESSFUL = "{PRFX} &aSuccessfully logged in!";
       @Comment(value = "Can be empty.", at = Comment.At.SAME_LINE)
       public String LOGIN_TITLE = "&fPlease, login using &6/login <password>&a.";
@@ -438,6 +439,7 @@ public class Settings extends YamlConfig {
       public String REGISTER_PASSWORD_TOO_SHORT = "{PRFX} &cYou entered a too short password, use a different one!";
       public String REGISTER_PASSWORD_TOO_LONG = "{PRFX} &cYou entered a too long password, use a different one!";
       public String REGISTER_PASSWORD_UNSAFE = "{PRFX} &cYour password is unsafe, use a different one!";
+      @Comment(value = "Can be empty.", at = Comment.At.SAME_LINE)
       public String REGISTER_SUCCESSFUL = "{PRFX} &aSuccessfully registered!";
       @Comment(value = "Can be empty.", at = Comment.At.SAME_LINE)
       public String REGISTER_TITLE = "{PRFX}";

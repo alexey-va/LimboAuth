@@ -67,6 +67,7 @@ public class AuthSessionHandler implements LimboSessionHandler {
   private static Component databaseErrorKick;
   private static String wrongNicknameCaseKick;
   private static Component timesUp;
+  @Nullable
   private static Component registerSuccessful;
   @Nullable
   private static Title registerSuccessfulTitle;
@@ -85,6 +86,7 @@ public class AuthSessionHandler implements LimboSessionHandler {
   private static Component registerPasswordTooLong;
   private static Component registerPasswordTooShort;
   private static Component registerPasswordUnsafe;
+  @Nullable
   private static Component loginSuccessful;
   private static Component sessionExpired;
   @Nullable
@@ -224,7 +226,9 @@ public class AuthSessionHandler implements LimboSessionHandler {
             throw new SQLRuntimeException(e);
           }
 
-          this.proxyPlayer.sendMessage(registerSuccessful);
+          if (registerSuccessful != null) {
+            this.proxyPlayer.sendMessage(registerSuccessful);
+          }
           if (registerSuccessfulTitle != null) {
             this.proxyPlayer.showTitle(registerSuccessfulTitle);
           }
@@ -409,7 +413,9 @@ public class AuthSessionHandler implements LimboSessionHandler {
   }
 
   public void finishLogin() {
-    this.proxyPlayer.sendMessage(loginSuccessful);
+    if (loginSuccessful != null) {
+      this.proxyPlayer.sendMessage(loginSuccessful);
+    }
     if (loginSuccessfulTitle != null) {
       this.proxyPlayer.showTitle(loginSuccessfulTitle);
     }
@@ -458,7 +464,8 @@ public class AuthSessionHandler implements LimboSessionHandler {
     databaseErrorKick = serializer.deserialize(Settings.IMP.MAIN.STRINGS.DATABASE_ERROR_KICK);
     wrongNicknameCaseKick = Settings.IMP.MAIN.STRINGS.WRONG_NICKNAME_CASE_KICK;
     timesUp = serializer.deserialize(Settings.IMP.MAIN.STRINGS.TIMES_UP);
-    registerSuccessful = serializer.deserialize(Settings.IMP.MAIN.STRINGS.REGISTER_SUCCESSFUL);
+    String registerSuccessfulMessage = Settings.IMP.MAIN.STRINGS.REGISTER_SUCCESSFUL;
+    registerSuccessful = registerSuccessfulMessage.isEmpty() ? null : serializer.deserialize(registerSuccessfulMessage);
     if (Settings.IMP.MAIN.STRINGS.REGISTER_SUCCESSFUL_TITLE.isEmpty() && Settings.IMP.MAIN.STRINGS.REGISTER_SUCCESSFUL_SUBTITLE.isEmpty()) {
       registerSuccessfulTitle = null;
     } else {
@@ -511,7 +518,8 @@ public class AuthSessionHandler implements LimboSessionHandler {
     registerPasswordTooLong = serializer.deserialize(Settings.IMP.MAIN.STRINGS.REGISTER_PASSWORD_TOO_LONG);
     registerPasswordTooShort = serializer.deserialize(Settings.IMP.MAIN.STRINGS.REGISTER_PASSWORD_TOO_SHORT);
     registerPasswordUnsafe = serializer.deserialize(Settings.IMP.MAIN.STRINGS.REGISTER_PASSWORD_UNSAFE);
-    loginSuccessful = serializer.deserialize(Settings.IMP.MAIN.STRINGS.LOGIN_SUCCESSFUL);
+    String loginSuccessfulMessage = Settings.IMP.MAIN.STRINGS.LOGIN_SUCCESSFUL;
+    loginSuccessful = loginSuccessfulMessage.isEmpty() ? null : serializer.deserialize(loginSuccessfulMessage);
     sessionExpired = serializer.deserialize(Settings.IMP.MAIN.STRINGS.MOD_SESSION_EXPIRED);
     if (Settings.IMP.MAIN.STRINGS.LOGIN_SUCCESSFUL_TITLE.isEmpty() && Settings.IMP.MAIN.STRINGS.LOGIN_SUCCESSFUL_SUBTITLE.isEmpty()) {
       loginSuccessfulTitle = null;
